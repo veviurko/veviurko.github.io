@@ -58,7 +58,7 @@ nav a.active {
     left: 0;
     right: 0;
     height: 50vh;
-    background-image: url('../images/background/placeholder.jpg');
+    background-image: url('../images/background/background.jpg');
     background-size: cover;
     background-position: center;
     opacity: 0.1;
