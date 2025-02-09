@@ -13,13 +13,14 @@ body {
 }
 
 /* Navigation */
-nav {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+header {
     position: fixed;
-    width: 100%;
     top: 0;
-    z-index: 1000;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 1000;  /* Highest z-index to stay on top */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .nav-content {
@@ -47,9 +48,10 @@ nav a.active {
 
 /* Hero section */
 .hero {
-    min-height: 100vh;
     position: relative;
-    padding-top: 80px;
+    padding-top: 80px;  /* Ensures content starts below fixed header */
+    margin-bottom: 2rem;  /* Reduced from 4rem to 2rem */
+    min-height: auto;    /* Remove forced full viewport height */
 }
 
 .background-image {
@@ -57,37 +59,41 @@ nav a.active {
     top: 0;
     left: 0;
     right: 0;
-    height: 50vh;
+    height: 100%;      /* Changed from 60vh to 100% to match content */
     background-image: url('../images/background/background.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.1;
+    opacity: 0.15;
+    z-index: 1;
 }
 
 .content-wrapper {
+    position: relative;
+    z-index: 2;  /* Above background, below header */
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    position: relative;
+    gap: 2rem;
 }
 
 .text-content {
-    flex: 1;
+    flex: 0 1 60%;
     padding-right: 2rem;
 }
 
 .profile-image {
-    flex: 1;
-    text-align: center;
+    flex: 0 1 40%;
+    text-align: right;
+    /* Removed position: sticky */
 }
 
 .profile-image img {
     max-width: 400px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.7);
 }
 
 /* Typography */
@@ -101,6 +107,18 @@ h1 {
     font-size: 1.5rem;
     color: #666;
     margin-bottom: 2rem;
+}
+
+/* About section */
+.about {
+    margin: 1.5rem 0 2rem 0;
+}
+
+.about p {
+    font-size: 1.1rem;
+    color: #444;
+    max-width: 600px;
+    line-height: 1.7;
 }
 
 /* Social links */
@@ -120,18 +138,14 @@ h1 {
     color: #007AFF;
 }
 
-/* About section */
-.about {
-    max-width: 1200px;
-    margin: 4rem auto;
-    padding: 0 2rem;
-}
-
 /* News section */
 .news {
+    position: relative;
     max-width: 1200px;
-    margin: 4rem auto;
-    padding: 0 2rem;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    z-index: 2;
 }
 
 .news-items {
@@ -158,23 +172,29 @@ footer {
 }
 
 /* Responsive design */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .content-wrapper {
-        flex-direction: column-reverse;
-        text-align: center;
+        flex-direction: column;
     }
 
     .text-content {
+        flex: 1;
         padding-right: 0;
-        padding-top: 2rem;
+        text-align: center;
     }
 
+    .profile-image {
+        flex: 1;
+        text-align: center;
+        position: relative;
+        top: 0;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
     .profile-image img {
         max-width: 300px;
-    }
-
-    .social-links {
-        justify-content: center;
     }
 
     h1 {

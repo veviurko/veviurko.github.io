@@ -1,0 +1,12 @@
+/* ... existing code ... */
+.header {
+  position: fixed;  /* Makes header stay at top when scrolling */
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;  /* Or any color you prefer */
+  z-index: 1000;  /* Ensures header stays above other content */
+  padding: 1rem;  /* Add some padding if needed */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Optional: adds subtle shadow */
+}
+/* ... existing code ... */

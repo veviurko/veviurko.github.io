@@ -1,0 +1,57 @@
+{
+  "last_updated": "2025-02-09T22:03:06.730085",
+  "publications": [
+    {
+      "title": "To the Max: Reinventing Reward in Reinforcement Learning",
+      "authors": [
+        "Grigorii Veviurko",
+        "Wendelin B\u00f6hmer",
+        "Mathijs de Weerdt"
+      ],
+      "year": 2024,
+      "venue": "arXiv preprint arXiv:2402.01361",
+      "citations": 1,
+      "url": ""
+    },
+    {
+      "title": "You Shall Pass: Dealing with the Zero-Gradient Problem in Predict and Optimize for Convex Optimization",
+      "authors": [
+        "Grigorii Veviurko",
+        "Wendelin B\u00f6hmer",
+        "Mathijs de Weerdt"
+      ],
+      "year": 2023,
+      "venue": "arXiv preprint arXiv:2307.16304",
+      "citations": 0,
+      "url": ""
+    },
+    {
+      "title": "Surrogate DC Microgrid Models for Optimization of Charging Electric Vehicles under Partial Observability",
+      "authors": [
+        "Grigorii Veviurko",
+        "Wendelin B\u00f6hmer",
+        "Laurens Mackay",
+        "Mathijs de Weerdt"
+      ],
+      "year": 2022,
+      "venue": "Energies",
+      "citations": 1,
+      "url": ""
+    },
+    {
+      "title": "Cultural transmission of vocal dialect in the naked mole-rat",
+      "authors": [
+        "Alison J Barker",
+        "Grigorii Veviurko",
+        "Nigel C Bennett",
+        "Daniel W Hart",
+        "Lina Mograby",
+        "Gary R Lewin"
+      ],
+      "year": 2021,
+      "venue": "Science",
+      "citations": 102,
+      "url": ""
+    }
+  ]
+}

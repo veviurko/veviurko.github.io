@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name - Personal Website</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="styles/header.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -26,10 +27,17 @@
                 <div class="text-content">
                     <h1>Grigorii Veviurko</h1>
                     <p class="subtitle">AI Researcher & Math Enthusiast </p>
+                    <div class="about">
+                        <p>Your brief introduction goes here. Keep it concise and engaging. Highlight your key interests and expertise
+                            our brief introduction goes here. Keep it concise and engaging. Highlight your key interests and expertise
+                            our brief introduction goes here. Keep it concise and engaging. Highlight your key interests and expertise
+                            our brief introduction goes here. Keep it concise and engaging. Highlight your key interests and expertise
+                            our brief introduction goes here. Keep it concise and engaging. Highlight your key interests and expertise.</p>
+                    </div>
                     <div class="social-links">
-                        <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                        <a href="https://www.linkedin.com/in/grivurko/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/veviurko" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://scholar.google.com/citations?user=2jVnBAIAAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
                         <a href="#" title="Download CV"><i class="fas fa-file-alt"></i></a>
                     </div>
                 </div>
@@ -39,27 +47,22 @@
             </div>
         </section>
 
-        <section class="about">
-            <h2>About Me</h2>
-            <p>Your brief introduction goes here. Keep it concise and engaging. Highlight your key interests and expertise.</p>
-        </section>
-
         <section class="news">
             <h2>Latest News</h2>
-            <div class="news-items">
-                <div class="news-item">
-                    <span class="date">February 2024</span>
-                    <p>Your latest news or update goes here.</p>
-                </div>
-                <!-- Add more news items as needed -->
+            <div class="news-items" id="newsContainer">
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <p>&copy; 2024 Your Name. All rights reserved. <a href="admin.html" style="opacity: 0.1; margin-left: 20px; font-size: 0.8em;">Admin</a></p>
     </footer>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
