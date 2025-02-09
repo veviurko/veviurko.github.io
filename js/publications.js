@@ -3,7 +3,8 @@ async function loadPublications() {
         // Try multiple possible paths
         const possiblePaths = [
             '../_data/publications.json',  // Local development
-            './data/publications.json'     // GitHub Pages
+            '/_data/publications.json',    // GitHub Pages absolute path
+            '_data/publications.json'      // GitHub Pages relative path
         ];
 
         let response;
