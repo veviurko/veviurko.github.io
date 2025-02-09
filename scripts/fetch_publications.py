@@ -30,11 +30,11 @@ def fetch_google_scholar_publications(author_id):
     # Sort by year (newest first)
     publications.sort(key=lambda x: int(x['year'] or 0), reverse=True)
     
-    # Create _data directory if it doesn't exist
-    os.makedirs('_data', exist_ok=True)
+    # Create data directory if it doesn't exist
+    os.makedirs('data', exist_ok=True)
     
     # Save to JSON file
-    with open('_data/publications.json', 'w') as f:
+    with open('data/publications.json', 'w') as f:
         json.dump({
             'last_updated': datetime.now().isoformat(),
             'publications': publications
