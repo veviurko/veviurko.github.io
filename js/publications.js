@@ -1,6 +1,25 @@
 async function loadPublications() {
     try {
-        const response = await fetch('../_data/publications.json');
+        // Try multiple possible paths
+        const possiblePaths = [
+            '../_data/publications.json',  // Local development
+            './data/publications.json'     // GitHub Pages
+        ];
+
+        let response;
+        for (const path of possiblePaths) {
+            try {
+                response = await fetch(path);
+                if (response.ok) break;
+            } catch (e) {
+                continue;
+            }
+        }
+
+        if (!response || !response.ok) {
+            throw new Error('Failed to load publications from any path');
+        }
+
         const data = await response.json();
         
         const container = document.getElementById('publications-container');
@@ -31,6 +50,8 @@ async function loadPublications() {
         });
     } catch (error) {
         console.error('Error loading publications:', error);
+        const container = document.getElementById('publications-container');
+        container.innerHTML = `<div class="error">Failed to load publications. Error: ${error.message}</div>`;
     }
 }
 

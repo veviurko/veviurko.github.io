@@ -48,7 +48,12 @@
         </section>
 
         <section class="news">
-            <h2>Latest News</h2>
+            <div class="news-header">
+                <h2>Latest News</h2>
+                <div id="newsControls" style="display: none;">
+                    <a href="admin.html" class="add-news-btn">Add News</a>
+                </div>
+            </div>
             <div class="news-items" id="newsContainer">
             </div>
         </section>
@@ -64,5 +69,16 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="js/firebase-config.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- Add this right after the <body> tag -->
+    <div id="loginPopup" class="login-popup" style="display: none;">
+        <div class="login-content">
+            <h2>Login</h2>
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <button onclick="closeLoginPopup()" class="cancel-btn">Cancel</button>
+        </div>
+    </div>
 </body>
 </html>
