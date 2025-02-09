@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Grigorii Veviurko</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <!-- Add GitHub Markdown CSS for better markdown rendering -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-content">
+                <a href="../index.html">Home</a>
+                <a href="publications.html">Publications</a>
+                <a href="blog.html" class="active">Blog</a>
+                <button id="logoutBtn" style="display: none;" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="blog-container">
+            <h1>Blog</h1>
+            
+            <div id="blog-controls" style="display: none;">
+                <div class="post-form">
+                    <input type="text" id="postTitle" placeholder="Post Title">
+                    <div class="editor-container">
+                        <div class="editor-tabs">
+                            <button class="tab-btn active" data-tab="write">Write</button>
+                            <button class="tab-btn" data-tab="preview">Preview</button>
+                        </div>
+                        <div class="editor-content">
+                            <div id="write-tab" class="tab-content active">
+                                <textarea id="postContent" placeholder="Write your post in Markdown..."></textarea>
+                            </div>
+                            <div id="preview-tab" class="tab-content">
+                                <div id="preview-content" class="markdown-body"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="addBlogPost()" class="add-post-btn">Publish Post</button>
+                </div>
+            </div>
+
+            <div id="blog-container">
+                <!-- Blog posts will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Grigorii Veviurko. All rights reserved.</p>
+    </footer>
+
+    <!-- Login Popup -->
+    <div id="loginPopup" class="login-popup" style="display: none;">
+        <div class="login-content">
+            <h2>Login</h2>
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <button onclick="closeLoginPopup()" class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    
+    <!-- Initialize Firebase -->
+    <script src="../js/firebase-config.js"></script>
+    
+    <!-- Markdown and KaTeX dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it-texmath@1.0.0/texmath.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="../js/main.js"></script>
+    <script src="../js/blog.js"></script>
+</body>
+</html>

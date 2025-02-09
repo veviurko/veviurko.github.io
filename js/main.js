@@ -150,4 +150,10 @@ firebase.auth().onAuthStateChanged((user) => {
             existingLogoutBtn.remove();
         }
     }
+
+    // Show/hide blog controls
+    const blogControls = document.getElementById('blog-controls');
+    if (blogControls) {
+        blogControls.style.display = user ? 'block' : 'none';
+    }
 });

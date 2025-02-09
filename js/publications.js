@@ -35,16 +35,12 @@ async function loadPublications() {
             pubElement.className = 'publication-item';
             
             pubElement.innerHTML = `
-                <div class="publication-title">${pub.title}</div>
+                <div class="publication-title">
+                    ${pub.url ? `<a href="${pub.url}" target="_blank">${pub.title}</a>` : pub.title}
+                </div>
                 <div class="publication-authors">${pub.authors.join(', ')}</div>
                 <div class="publication-venue">${pub.venue}</div>
                 <span class="publication-year">${pub.year || 'Forthcoming'}</span>
-                ${pub.citations ? `<span class="publication-citations">
-                    <i class="fas fa-quote-right"></i> ${pub.citations} citations
-                </span>` : ''}
-                ${pub.url ? `<a href="${pub.url}" class="publication-link" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> Link
-                </a>` : ''}
             `;
             
             container.appendChild(pubElement);

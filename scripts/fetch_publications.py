@@ -23,7 +23,7 @@ def fetch_google_scholar_publications(author_id):
             'year': year,
             'venue': filled_pub['bib'].get('journal', filled_pub['bib'].get('conference', '')),
             'citations': filled_pub.get('num_citations', 0),
-            'url': filled_pub['bib'].get('url', ''),
+            'url': filled_pub.get('pub_url', ''),
         }
         publications.append(pub_data)
     

@@ -54,6 +54,16 @@
     text-decoration: underline;
 }
 
+.publication-title a {
+    color: #1a1a1a;
+    text-decoration: none;
+}
+
+.publication-title a:hover {
+    color: #007AFF;
+    text-decoration: underline;
+}
+
 @media (max-width: 768px) {
     .publications-section {
         padding: 80px 1rem 1rem 1rem;
