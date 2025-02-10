@@ -1,21 +1,71 @@
-/* Base styles */
-@import 'common/reset.css';
-@import 'common/layout.css';
+/* Then import all other styles */
+@import url('common/reset.css');
+@import url('common/layout.css');
+@import url('common/buttons.css');
+@import url('common/forms.css');
+@import url('common/markdown.css');
+@import url('components/header.css');
+@import url('components/footer.css');
+@import url('components/layout.css');
+@import url('components/hero.css');
+@import url('components/news.css');
+@import url('components/blog.css');
+@import url('components/publications.css');
+@import url('components/login.css');
+@import url('components/modal.css');
 
-/* Common components */
-@import 'common/buttons.css';
-@import 'common/forms.css';
-@import 'common/markdown.css';
 
-/* Layout components */
-@import 'components/header.css';
-@import 'components/footer.css';
-@import 'components/layout.css';
+/* First, define CSS variables */
+:root {
+    --primary-color: #6366f1;
+    --primary-light: #818cf8;
+    --secondary-color: #14b8a6;
+    --accent-color: #f43f5e;
+    --background-light: #f8fafc;
+    --text-dark: #3b1e2a;
+    --text-light: #64748b;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+  }
 
-/* Page-specific components */
-@import 'components/hero.css';
-@import 'components/news.css';
-@import 'components/blog.css';
-@import 'components/publications.css';
-@import 'components/login.css';
-@import 'components/modal.css';
+  
+/* Global styles */
+body {
+  color: var(--text-dark);
+  background-color: var(--background-light);
+  min-height: 100vh;
+}
+
+/* Update existing admin styles to use variables */
+.admin-container button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.admin-container button:hover {
+  background-color: var(--primary-light);
+}
+
+/* Update other existing button styles */
+button, 
+.button {
+  background-color: var(--primary-color);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+button:hover,
+.button:hover {
+  background-color: var(--primary-light);
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-light);
+}

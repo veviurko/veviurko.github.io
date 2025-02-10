@@ -1,12 +1,48 @@
-body footer {
+footer, 
+body > footer,
+.section-container > footer {
     text-align: center;
-    padding: 0.75rem !important;
-    background-color: white;
+    padding: 0.5rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.3));
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255,255,255,0.2);
     margin-top: 2rem;
-    font-size: 0.9rem !important;
+    font-size: 0.7rem;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+    width: 100%;
 }
 
-body footer p {
+footer p, 
+body > footer p,
+.section-container > footer p {
     margin: 0;
     line-height: 1.2;
+    color: var(--text-dark);
+}
+
+footer a, 
+body > footer a,
+.section-container > footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+footer a:hover, 
+body > footer a:hover,
+.section-container > footer a:hover {
+    color: var(--secondary-color);
+}
+
+/* Ensure footer stays at bottom if content is short */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 } 

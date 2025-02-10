@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-02-09T23:04:50.001918",
+  "last_updated": "2025-02-10T14:18:03.904865",
   "publications": [
     {
       "title": "To the Max: Reinventing Reward in Reinforcement Learning",
@@ -9,7 +9,7 @@
         "Mathijs de Weerdt"
       ],
       "year": 2024,
-      "venue": "arXiv preprint arXiv:2402.01361",
+      "venue": "ICML 2024",
       "citations": 1,
       "url": "https://arxiv.org/abs/2402.01361"
     },

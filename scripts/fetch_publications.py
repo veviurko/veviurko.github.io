@@ -4,6 +4,14 @@ from datetime import datetime
 import os
 
 def fetch_google_scholar_publications(author_id):
+    # Load overrides if they exist
+    overrides = {}
+    try:
+        with open('data/publication_overrides.json', 'r') as f:
+            overrides = json.load(f)['overrides']
+    except (FileNotFoundError, json.JSONDecodeError, KeyError):
+        print("No overrides found or invalid override file")
+    
     # Search for the author and fill in publication data
     author = scholarly.search_author_id(author_id)  # Returns author dict directly
     author = scholarly.fill(author)
@@ -25,6 +33,11 @@ def fetch_google_scholar_publications(author_id):
             'citations': filled_pub.get('num_citations', 0),
             'url': filled_pub.get('pub_url', ''),
         }
+        
+        # Apply overrides if they exist for this publication
+        if pub_data['title'] in overrides:
+            pub_data.update(overrides[pub_data['title']])
+        
         publications.append(pub_data)
     
     # Sort by year (newest first)

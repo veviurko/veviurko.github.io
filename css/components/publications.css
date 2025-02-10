@@ -6,9 +6,12 @@
 }
 
 .publication-item {
-    background-color: rgba(255, 255, 255, 0.95);
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
     padding: 2rem;
     max-width: 1200px;
@@ -21,8 +24,8 @@
 }
 
 .publication-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
 }
 
 .publication-title {
@@ -33,12 +36,24 @@
 }
 
 .publication-title a {
-    color: #2c5282;
+    color: var(--primary-color);
+    position: relative;
     text-decoration: none;
 }
 
-.publication-title a:hover {
-    text-decoration: underline;
+.publication-title a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary-light);
+    transition: width 0.3s ease;
+}
+
+.publication-title a:hover::after {
+    width: 100%;
 }
 
 .publication-authors {
@@ -48,18 +63,18 @@
 }
 
 .publication-venue {
-    color: #666;
+    color: var(--secondary-color);
     font-style: italic;
     margin-bottom: 0.3rem;
+    font-weight: 500;
 }
 
 .publication-year {
-    display: inline-block;
-    padding: 0.2rem 0.8rem;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-    color: #666;
-    font-size: 0.9rem;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
 }
 
 /* ... rest of publication-specific styles ... */ 
