@@ -1,0 +1,14 @@
+main {
+    padding-top: 60px; /* Adjust this value to match your header height */
+}
+
+.publications-section, .blog-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.publications-section h1, .blog-section h1 {
+    margin-bottom: 2rem;
+    color: #1a1a1a;
+} 

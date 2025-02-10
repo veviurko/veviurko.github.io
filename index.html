@@ -3,22 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Personal Website</title>
+    <meta name="description" content="Personal website of Grigorii Veviurko - AI Researcher & Math Enthusiast">
+    <title>Grigorii Veviurko - Personal Website</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="styles/header.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-content">
-                <a href="index.html" class="active">Home</a>
-                <a href="pages/publications.html">Publications</a>
-                <a href="pages/blog.html">Blog</a>
-            </div>
-        </nav>
-    </header>
+    <!-- Navigation placeholder -->
+    <div id="navigation"></div>
 
     <main>
         <section class="hero">
@@ -51,7 +44,7 @@
             <div class="news-header">
                 <h2>Latest News</h2>
                 <div id="newsControls" style="display: none;">
-                    <a href="admin.html" class="add-news-btn">Add News</a>
+                    <button onclick="openAddNewsModal()" class="add-news-btn">Add News</button>
                 </div>
             </div>
             <div class="news-items" id="newsContainer">
@@ -59,16 +52,27 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Your Name. All rights reserved. <a href="admin.html" style="opacity: 0.1; margin-left: 20px; font-size: 0.8em;">Admin</a></p>
-    </footer>
+    <!-- Footer placeholder -->
+    <div id="footer"></div>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    
+    <!-- Core scripts -->
     <script src="js/firebase-config.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- Initialize components -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('navigation', '/components/nav.html');
+            loadComponent('footer', '/components/footer.html');
+        });
+    </script>
 
     <!-- Add this right after the <body> tag -->
     <div id="loginPopup" class="login-popup" style="display: none;">
@@ -78,6 +82,19 @@
             <input type="password" id="password" placeholder="Password">
             <button onclick="login()">Login</button>
             <button onclick="closeLoginPopup()" class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Add this before the closing body tag -->
+    <div id="addNewsModal" class="modal">
+        <div class="modal-content">
+            <h2>Add News</h2>
+            <input type="date" id="newsDate" required>
+            <input type="text" id="newsContent" placeholder="News content" required>
+            <div class="modal-buttons">
+                <button onclick="addNews()">Add</button>
+                <button onclick="closeAddNewsModal()" class="cancel-btn">Cancel</button>
+            </div>
         </div>
     </div>
 </body>

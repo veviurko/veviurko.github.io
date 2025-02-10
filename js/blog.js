@@ -46,36 +46,64 @@ async function addBlogPost() {
 
 async function loadBlogPosts() {
     try {
-        const blogContainer = document.getElementById('blog-container');
-        if (!blogContainer) return;
+        const possiblePaths = [
+            '../data/blog.json',
+            '/data/blog.json',
+            './data/blog.json'
+        ];
+
+        let response;
+        for (const path of possiblePaths) {
+            try {
+                response = await fetch(path);
+                if (response.ok) break;
+            } catch (e) {
+                continue;
+            }
+        }
+
+        if (!response || !response.ok) {
+            throw new Error('Failed to load blog posts from any path');
+        }
+
+        const data = await response.json();
+        const container = document.getElementById('blog-container');
         
-        db.collection('blog-posts')
-            .orderBy('timestamp', 'desc')
-            .onSnapshot((snapshot) => {
-                const postsHTML = snapshot.docs.map(doc => {
-                    const data = doc.data();
-                    const renderedContent = md.render(data.content);
-                    return `
-                        <article class="blog-post">
-                            <h2>${data.title}</h2>
-                            <div class="post-meta">
-                                <span>By ${data.author}</span>
-                                <span>${data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : 'Date unavailable'}</span>
-                            </div>
-                            <div class="post-content markdown-body">
-                                ${renderedContent}
-                            </div>
-                            ${firebase.auth().currentUser ? 
-                                `<button onclick="deleteBlogPost('${doc.id}')" class="delete-btn">Delete Post</button>` 
-                                : ''}
-                        </article>
-                    `;
-                }).join('');
-                
-                blogContainer.innerHTML = postsHTML;
-            });
+        // Sort blog posts by date (most recent first)
+        const posts = data.posts.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
+        });
+
+        posts.forEach(post => {
+            const postElement = document.createElement('article');
+            postElement.className = 'blog-post';
+            
+            postElement.innerHTML = `
+                <div class="blog-title">
+                    <a href="${post.url}">${post.title}</a>
+                </div>
+                <div class="blog-meta">
+                    ${new Date(post.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })}
+                </div>
+                <div class="blog-preview">
+                    ${post.preview}
+                </div>
+                <div class="blog-tags">
+                    ${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+                </div>
+                <a href="${post.url}" class="read-more">Read more →</a>
+            `;
+            
+            container.appendChild(postElement);
+        });
     } catch (error) {
         console.error('Error loading blog posts:', error);
+        const container = document.getElementById('blog-container');
+        container.innerHTML = `<div class="error">Failed to load blog posts. Error: ${error.message}</div>`;
     }
 }
 

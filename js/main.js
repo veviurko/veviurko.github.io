@@ -1,37 +1,26 @@
-// Authentication
-function showLoginPopup() {
-    document.getElementById('loginPopup').style.display = 'flex';
-}
-
-function closeLoginPopup() {
-    document.getElementById('loginPopup').style.display = 'none';
-}
-
-async function login() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    try {
-        await firebase.auth().signInWithEmailAndPassword(email, password);
-        alert('Login successful!');
-        closeLoginPopup();
-        location.reload();
-    } catch (error) {
-        alert('Login failed: ' + error.message);
-    }
-}
-
-// Add logout function
-async function logout() {
-    try {
-        await firebase.auth().signOut();
-        location.reload(); // Reload to update UI
-    } catch (error) {
-        alert('Logout failed: ' + error.message);
-    }
-}
-
 // Add news
+
+function openAddNewsModal() {
+    const modal = document.getElementById('addNewsModal');
+    modal.style.display = 'flex';
+    // Set default date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('newsDate').value = today;
+}
+
+function closeAddNewsModal() {
+    const modal = document.getElementById('addNewsModal');
+    modal.style.display = 'none';
+}
+
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById('addNewsModal');
+    if (event.target === modal) {
+        closeAddNewsModal();
+    }
+}
+
 async function addNews() {
     const user = firebase.auth().currentUser;
     if (!user) {
@@ -54,7 +43,7 @@ async function addNews() {
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
         
-        alert('News added successfully!');
+        closeAddNewsModal();
         document.getElementById('newsDate').value = '';
         document.getElementById('newsContent').value = '';
     } catch (error) {
@@ -66,19 +55,21 @@ async function addNews() {
 async function loadNews() {
     try {
         const newsContainer = document.getElementById('newsContainer');
-        if (!newsContainer) return; // Exit if we're not on a page with news
+        if (!newsContainer) return;
         
-        // Real-time updates
         db.collection('news')
             .orderBy('timestamp', 'desc')
             .onSnapshot((snapshot) => {
                 const newsHTML = snapshot.docs.map(doc => `
                     <div class="news-item">
                         <span class="date">${doc.data().date}</span>
-                        <p>${doc.data().content}</p>
-                        ${firebase.auth().currentUser ? 
-                            `<button onclick="deleteNews('${doc.id}')" class="delete-btn">Delete</button>` 
-                            : ''}
+                        <p>${sanitizeAndParseLinks(doc.data().content)}</p>
+                        ${firebase.auth().currentUser ? `
+                            <div class="news-actions">
+                                <button onclick="editNews('${doc.id}', '${doc.data().date}', '${doc.data().content.replace(/'/g, "&apos;")}')" class="edit-btn">Edit</button>
+                                <button onclick="deleteNews('${doc.id}')" class="delete-btn">Delete</button>
+                            </div>
+                        ` : ''}
                     </div>
                 `).join('');
                 
@@ -91,7 +82,36 @@ async function loadNews() {
     }
 }
 
-// Add this new function for deleting news
+// Add this new function to handle link parsing and sanitization
+function sanitizeAndParseLinks(text) {
+    // First, escape HTML to prevent XSS
+    const escaped = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    
+    // Then parse markdown-style links: [text](url)
+    const withLinks = escaped.replace(
+        /\[([^\]]+)\]\(([^)]+)\)/g,
+        (match, text, url) => {
+            // Validate URL
+            try {
+                const validUrl = new URL(url);
+                if (validUrl.protocol === 'http:' || validUrl.protocol === 'https:') {
+                    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+                }
+            } catch (e) {
+                console.warn('Invalid URL in news content:', url);
+            }
+            return match;
+        }
+    );
+    
+    return withLinks;
+}
+
 async function deleteNews(docId) {
     const user = firebase.auth().currentUser;
     if (!user) {
@@ -109,51 +129,67 @@ async function deleteNews(docId) {
     }
 }
 
+function editNews(docId, date, content) {
+    const modal = document.getElementById('addNewsModal');
+    const modalTitle = modal.querySelector('h2');
+    const dateInput = document.getElementById('newsDate');
+    const contentInput = document.getElementById('newsContent');
+    const addButton = modal.querySelector('button:not(.cancel-btn)');
+    
+    modalTitle.textContent = 'Edit News';
+    dateInput.value = date;
+    contentInput.value = content;
+    addButton.textContent = 'Update';
+    addButton.onclick = () => updateNews(docId);
+    
+    modal.style.display = 'flex';
+}
+
+async function updateNews(docId) {
+    const user = firebase.auth().currentUser;
+    if (!user) {
+        alert('Please login first');
+        return;
+    }
+
+    const date = document.getElementById('newsDate').value;
+    const content = document.getElementById('newsContent').value;
+
+    if (!date || !content) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    try {
+        await db.collection('news').doc(docId).update({
+            date: date,
+            content: content,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        
+        closeAddNewsModal();
+        resetNewsModal();
+    } catch (error) {
+        alert('Error updating news: ' + error.message);
+    }
+}
+
+function resetNewsModal() {
+    const modal = document.getElementById('addNewsModal');
+    const modalTitle = modal.querySelector('h2');
+    const addButton = modal.querySelector('button:not(.cancel-btn)');
+    
+    modalTitle.textContent = 'Add News';
+    addButton.textContent = 'Add';
+    addButton.onclick = addNews;
+    
+    document.getElementById('newsDate').value = new Date().toISOString().split('T')[0];
+    document.getElementById('newsContent').value = '';
+}
+
 // Initialize based on current page
 document.addEventListener('DOMContentLoaded', () => {
-    const adminLinks = document.querySelectorAll('a[href="admin.html"]');
-    adminLinks.forEach(link => {
-        link.onclick = (e) => {
-            e.preventDefault();
-            showLoginPopup();
-        };
-    });
-
     if (document.getElementById('newsContainer')) {
         loadNews();
-    }
-});
-
-// Update auth state check
-firebase.auth().onAuthStateChanged((user) => {
-    // Show/hide news controls
-    const newsControls = document.getElementById('newsControls');
-    if (newsControls) {
-        newsControls.style.display = user ? 'block' : 'none';
-    }
-    
-    // Add logout button if user is logged in
-    const headerNav = document.querySelector('.nav-content');
-    if (headerNav) {
-        const existingLogoutBtn = document.getElementById('logoutBtn');
-        if (user && !existingLogoutBtn) {
-            const logoutBtn = document.createElement('a');
-            logoutBtn.id = 'logoutBtn';
-            logoutBtn.href = '#';
-            logoutBtn.textContent = 'Logout';
-            logoutBtn.onclick = (e) => {
-                e.preventDefault();
-                logout();
-            };
-            headerNav.appendChild(logoutBtn);
-        } else if (!user && existingLogoutBtn) {
-            existingLogoutBtn.remove();
-        }
-    }
-
-    // Show/hide blog controls
-    const blogControls = document.getElementById('blog-controls');
-    if (blogControls) {
-        blogControls.style.display = user ? 'block' : 'none';
     }
 });

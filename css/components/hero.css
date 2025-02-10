@@ -1,0 +1,130 @@
+.hero {
+    position: relative;
+    padding-top: 80px;
+    margin-bottom: 2rem;
+    min-height: auto;
+    width: 100%;
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background-image: url('/images/background/background.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.text-content {
+    flex: 0 1 60%;
+    padding-right: 2rem;
+}
+
+.profile-image {
+    flex: 0 1 40%;
+    text-align: right;
+}
+
+.profile-image img {
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.7);
+}
+
+/* Typography */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* About section */
+.about {
+    margin: 1.5rem 0 2rem 0;
+}
+
+.about p {
+    font-size: 1.1rem;
+    color: #444;
+    max-width: 600px;
+    line-height: 1.7;
+}
+
+/* Social links */
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-links a {
+    color: #666;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #007AFF;
+}
+
+@media (max-width: 600px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .text-content {
+        flex: 1;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .profile-image {
+        flex: 1;
+        text-align: center;
+        position: relative;
+        top: 0;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-image img {
+        max-width: 300px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Add this new style for the news section */
+.news {
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    margin-top: 2rem;
+} 

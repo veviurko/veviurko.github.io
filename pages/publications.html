@@ -3,35 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Academic publications by Grigorii Veviurko">
     <title>Publications - Grigorii Veviurko</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/publications.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-content">
-                <a href="../index.html">Home</a>
-                <a href="publications.html" class="active">Publications</a>
-                <a href="blog.html">Blog</a>
-            </div>
-        </nav>
-    </header>
+    <!-- Navigation placeholder -->
+    <div id="navigation"></div>
 
     <main>
         <section class="publications-section">
-            <h1>Publications</h1>
+            <div class="background-image"></div>
             <div id="publications-container">
                 <!-- Publications will be loaded here dynamically -->
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Grigorii Veviurko. All rights reserved.</p>
-    </footer>
+    <!-- Footer placeholder -->
+    <div id="footer"></div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    
+    <!-- Core scripts -->
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <!-- Page specific scripts -->
     <script src="../js/publications.js"></script>
+
+    <!-- Initialize components -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('navigation', '/components/nav.html');
+            loadComponent('footer', '/components/footer.html');
+        });
+    </script>
 </body>
 </html>
