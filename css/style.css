@@ -13,6 +13,7 @@
 @import url('components/publications.css');
 @import url('components/login.css');
 @import url('components/modal.css');
+@import url('components/timeline.css');
 
 
 /* First, define CSS variables */
@@ -22,7 +23,7 @@
     --secondary-color: #14b8a6;
     --accent-color: #f43f5e;
     --background-light: #f8fafc;
-    --text-dark: #3b1e2a;
+    --text-dark: #1e293b;
     --text-light: #64748b;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
     --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);

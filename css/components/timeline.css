@@ -1,0 +1,15 @@
+.placeholder-frame {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: var(--shadow-lg);
+    border-radius: 25px;
+}   

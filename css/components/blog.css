@@ -9,7 +9,7 @@
 
 /* Blog specific styles */
 .blog-container {
-    max-width: 800px;
+    max-width: 800px;    
 }
 
 .blog-post {
@@ -39,19 +39,6 @@
     z-index: 1;
 }
 
-.background-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    background-image: url('/images/background/background.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2;
-    z-index: -1;
-}
-
 .blog-post {
     background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
     backdrop-filter: blur(10px);
@@ -64,16 +51,17 @@
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    max-height: 100%;
 }
 
 .blog-post:first-child {
     margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+    margin-top: -7rem;
 }
 
-.blog-post:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-}
+
 
 .blog-title h2 {
     font-size: 1.3rem;
@@ -295,8 +283,9 @@
     position: absolute;
     top: 20px;
     right: 2rem;
-    z-index: 2;
+    z-index: 9999;
     width: auto;
+    margin-top: -3rem;
 }
 
 #admin-controls {

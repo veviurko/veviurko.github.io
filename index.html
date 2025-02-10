@@ -43,7 +43,12 @@
                 </div>
             </div>
         </section>
-
+        
+        <section class="placeholder-frame">
+            <h2>Placeholder Title</h2>
+            <p>This is a placeholder for future content.</p>
+        </section>
+        
         <section class="news">
             <div class="news-header">
                 <h2>Latest News</h2>
@@ -73,7 +78,28 @@
     <!-- Initialize components -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            loadComponent('navigation', '/components/nav.html');
+            // Redirect to index.html if the current path is the root
+            if (window.location.pathname === '/') {
+                window.location.href = '/index.html';
+            }
+
+            loadComponent('navigation', '/components/nav.html').then(() => {
+                // Get the current URL path
+                const currentPath = window.location.pathname;
+
+                // Set the Home link as active based on the current path
+                const homeLink = document.querySelector('a[href="/index.html"]');
+                const rootLink = document.querySelector('a[href="/"]'); // Assuming you have a link for the root
+
+                if (currentPath === '/index.html' || currentPath === '/') {
+                    if (homeLink) {
+                        homeLink.classList.add('active');
+                    }
+                    if (rootLink) {
+                        rootLink.classList.add('active');
+                    }
+                }
+            });
             loadComponent('footer', '/components/footer.html');
         });
     </script>

@@ -1,5 +1,6 @@
 main {
-    padding-top: 60px; /* Adjust this value to match your header height */
+    padding-top: 5,2; /* Adjust this value to match your header height */
+    /* margin-top: -12rem; Add this line to create overlap with the header */
 }
 
 .publications-section, .blog-section {

@@ -1,8 +1,12 @@
 /* Publication specific styles */
 .publications-section {
     position: relative;
-    padding: 0;
-    z-index: 1;
+    padding-top: 80px;
+    margin-bottom: 2rem;
+    min-height: auto;
+    width: 100%;
+    
+    /* margin-top: -12rem */
 }
 
 #publications-container {
@@ -26,16 +30,15 @@
 }
 
 .publication-item:first-child {
-    margin-top: 2rem;
+    /* margin-top: 10rem; */
+    position: relative;
+    margin-top: -12rem;
+    z-index: 2;
 }
 
 .publication-item:last-child {
     border-bottom: none;
-}
-
-.publication-item:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    z-index: 2;
 }
 
 .publication-title {
@@ -86,5 +89,3 @@
     border-radius: 20px;
     font-weight: 500;
 }
-
-/* ... rest of publication-specific styles ... */ 

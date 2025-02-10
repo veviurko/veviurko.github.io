@@ -19,12 +19,10 @@
 <body>
     <!-- Navigation placeholder -->
     <div id="navigation"></div>
-
     <main>
+        <div class="background-image"></div>
         <section class="blog-section">
-            <div class="background-image"></div>
             <div class="blog-header">
-                <!-- Remove h1 and add header container -->
                 <div id="admin-controls" style="display: none;">
                     <button id="newPostBtn" class="primary-button">
                         <i class="fas fa-plus"></i> New Post
@@ -75,7 +73,7 @@
     <div id="footer"></div>
 
     <!-- Login Popup -->
-    <div id="loginPopup" class="login-popup" style="display: none;">
+    <!-- <div id="loginPopup" class="login-popup" style="display: none;">
         <div class="login-content">
             <h2>Login</h2>
             <input type="email" id="email" placeholder="Email">
@@ -83,7 +81,7 @@
             <button onclick="login()">Login</button>
             <button onclick="closeLoginPopup()" class="cancel-btn">Cancel</button>
         </div>
-    </div>
+    </div> -->
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -105,7 +103,7 @@
             loadComponent('navigation', '/components/nav.html');
             loadComponent('footer', '/components/footer.html');
             // Call loadBlogPosts explicitly after components are loaded
-            loadBlogPosts();
+            // loadBlogPosts();
         });
     </script>
 </body>
