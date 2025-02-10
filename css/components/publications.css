@@ -1,8 +1,14 @@
 /* Publication specific styles */
 .publications-section {
     position: relative;
-    padding: 2rem;
+    padding: 0;
     z-index: 1;
+}
+
+#publications-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 0;
 }
 
 .publication-item {
@@ -12,11 +18,15 @@
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
     border-radius: 15px;
-    margin-bottom: 2rem;
+    margin: 1rem 0;
     padding: 2rem;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.publication-item:first-child {
+    margin-top: 2rem;
 }
 
 .publication-item:last-child {

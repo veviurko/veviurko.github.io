@@ -13,7 +13,29 @@ const md = window.markdownit({
     }
 });
 
-async function addBlogPost() {
+let currentEditId = null;
+
+function showEditor(isEdit = false) {
+    const dialog = document.getElementById('postEditorDialog');
+    dialog.style.display = 'flex';
+    document.getElementById('editorTitle').textContent = isEdit ? 'Edit Post' : 'New Post';
+}
+
+function hideEditor() {
+    const dialog = document.getElementById('postEditorDialog');
+    dialog.style.display = 'none';
+    resetEditor();
+}
+
+function resetEditor() {
+    document.getElementById('postTitle').value = '';
+    document.getElementById('postContent').value = '';
+    document.getElementById('postTags').value = '';
+    document.getElementById('postPreview').value = '';
+    currentEditId = null;
+}
+
+async function savePost() {
     const user = firebase.auth().currentUser;
     if (!user) {
         alert('Please login first');
@@ -22,80 +44,84 @@ async function addBlogPost() {
 
     const title = document.getElementById('postTitle').value;
     const content = document.getElementById('postContent').value;
+    const tags = document.getElementById('postTags').value.split(',').map(tag => tag.trim());
+    const preview = document.getElementById('postPreview').value;
 
     if (!title || !content) {
-        alert('Please fill in all fields');
+        alert('Please fill in all required fields');
         return;
     }
 
     try {
-        await db.collection('blog-posts').add({
-            title: title,
-            content: content,
+        const postData = {
+            title,
+            content,
+            tags,
+            preview,
+            author: user.email,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            author: user.email
-        });
-        
-        alert('Blog post added successfully!');
-        document.getElementById('postTitle').value = '';
-        document.getElementById('postContent').value = '';
+            lastModified: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        if (currentEditId) {
+            await db.collection('blog-posts').doc(currentEditId).update(postData);
+        } else {
+            await db.collection('blog-posts').add(postData);
+        }
+
+        alert(`Blog post ${currentEditId ? 'updated' : 'added'} successfully!`);
+        hideEditor();
+        loadBlogPosts();
     } catch (error) {
-        alert('Error adding blog post: ' + error.message);
+        alert('Error saving blog post: ' + error.message);
     }
 }
 
 async function loadBlogPosts() {
     try {
-        const possiblePaths = [
-            '../data/blog.json',
-            '/data/blog.json',
-            './data/blog.json'
-        ];
+        const snapshot = await db.collection('blog-posts')
+            .orderBy('timestamp', 'desc')
+            .get();
 
-        let response;
-        for (const path of possiblePaths) {
-            try {
-                response = await fetch(path);
-                if (response.ok) break;
-            } catch (e) {
-                continue;
-            }
-        }
-
-        if (!response || !response.ok) {
-            throw new Error('Failed to load blog posts from any path');
-        }
-
-        const data = await response.json();
         const container = document.getElementById('blog-container');
-        
-        // Sort blog posts by date (most recent first)
-        const posts = data.posts.sort((a, b) => {
-            return new Date(b.date) - new Date(a.date);
-        });
+        container.innerHTML = '';
 
-        posts.forEach(post => {
+        snapshot.forEach(doc => {
+            const post = doc.data();
             const postElement = document.createElement('article');
             postElement.className = 'blog-post';
             
+            const postDate = post.timestamp ? post.timestamp.toDate() : new Date();
+            const truncatedContent = post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content;
+
             postElement.innerHTML = `
                 <div class="blog-title">
-                    <a href="${post.url}">${post.title}</a>
+                    <h2><a href="post.html?id=${doc.id}">${post.title}</a></h2>
                 </div>
                 <div class="blog-meta">
-                    ${new Date(post.date).toLocaleDateString('en-US', {
+                    ${postDate.toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
                     })}
                 </div>
                 <div class="blog-preview">
-                    ${post.preview}
+                    ${post.preview || truncatedContent}
+                </div>
+                <div class="blog-content">
+                    ${md.render(post.content || '')}
                 </div>
                 <div class="blog-tags">
-                    ${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+                    ${post.tags ? post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('') : ''}
                 </div>
-                <a href="${post.url}" class="read-more">Read more →</a>
+                <div class="post-actions" ${firebase.auth().currentUser?.email === post.author ? '' : 'style="display: none;"'}>
+                    <button class="edit-button" onclick="editPost('${doc.id}')">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="delete-button" onclick="deleteBlogPost('${doc.id}')">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>
             `;
             
             container.appendChild(postElement);
@@ -104,6 +130,28 @@ async function loadBlogPosts() {
         console.error('Error loading blog posts:', error);
         const container = document.getElementById('blog-container');
         container.innerHTML = `<div class="error">Failed to load blog posts. Error: ${error.message}</div>`;
+    }
+}
+
+async function editPost(docId) {
+    try {
+        const doc = await db.collection('blog-posts').doc(docId).get();
+        if (!doc.exists) {
+            alert('Post not found');
+            return;
+        }
+
+        const post = doc.data();
+        currentEditId = docId;
+        
+        document.getElementById('postTitle').value = post.title;
+        document.getElementById('postContent').value = post.content;
+        document.getElementById('postTags').value = post.tags ? post.tags.join(', ') : '';
+        document.getElementById('postPreview').value = post.preview || '';
+        
+        showEditor(true);
+    } catch (error) {
+        alert('Error loading post for editing: ' + error.message);
     }
 }
 
@@ -156,7 +204,39 @@ function setupEditorTabs() {
     });
 }
 
+// Modify the DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
     loadBlogPosts();
     setupEditorTabs();
+
+    // Add event listeners for editor buttons
+    const newPostBtn = document.getElementById('newPostBtn');
+    if (newPostBtn) {
+        newPostBtn.addEventListener('click', () => showEditor(false));
+    }
+    
+    document.getElementById('cancelEditBtn')?.addEventListener('click', hideEditor);
+    document.getElementById('savePostBtn')?.addEventListener('click', savePost);
+
+    // Check initial auth state
+    updateAdminControls();
+});
+
+// Update the updateAdminControls function to be more robust
+function updateAdminControls() {
+    const user = firebase.auth().currentUser;
+    const adminControls = document.getElementById('admin-controls');
+    
+    if (adminControls) {
+        if (user) {
+            adminControls.style.display = 'block';
+        } else {
+            adminControls.style.display = 'none';
+        }
+    }
+}
+
+// Make sure we update controls whenever auth state changes
+firebase.auth().onAuthStateChanged(user => {
+    updateAdminControls();
 });

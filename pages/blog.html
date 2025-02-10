@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- KaTeX -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <!-- Add required scripts for markdown and KaTeX -->
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it-texmath@1.0.0/texmath.min.js"></script>
 </head>
 <body>
     <!-- Navigation placeholder -->
@@ -18,7 +22,49 @@
 
     <main>
         <section class="blog-section">
-            <h1>Blog Posts</h1>
+            <div class="background-image"></div>
+            <div class="blog-header">
+                <!-- Remove h1 and add header container -->
+                <div id="admin-controls" style="display: none;">
+                    <button id="newPostBtn" class="primary-button">
+                        <i class="fas fa-plus"></i> New Post
+                    </button>
+                </div>
+            </div>
+
+            <!-- Post Editor Dialog -->
+            <div id="postEditorDialog" class="editor-dialog" style="display: none;">
+                <div class="editor-content">
+                    <h2 id="editorTitle">New Post</h2>
+                    <input type="text" id="postTitle" placeholder="Post Title" class="post-title-input">
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" data-tab="write">Write</button>
+                            <button class="tab-btn" data-tab="preview">Preview</button>
+                        </div>
+                        
+                        <div id="write-tab" class="tab-content active">
+                            <textarea id="postContent" placeholder="Write your post content in Markdown..."></textarea>
+                        </div>
+                        
+                        <div id="preview-tab" class="tab-content">
+                            <div id="preview-content" class="markdown-body"></div>
+                        </div>
+                    </div>
+
+                    <div class="post-meta-inputs">
+                        <input type="text" id="postTags" placeholder="Tags (comma-separated)">
+                        <input type="text" id="postPreview" placeholder="Short preview text">
+                    </div>
+
+                    <div class="editor-actions">
+                        <button id="savePostBtn" class="primary-button">Save Post</button>
+                        <button id="cancelEditBtn" class="secondary-button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
             <div id="blog-container">
                 <!-- Blog posts will be loaded here dynamically -->
             </div>
@@ -58,6 +104,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadComponent('navigation', '/components/nav.html');
             loadComponent('footer', '/components/footer.html');
+            // Call loadBlogPosts explicitly after components are loaded
+            loadBlogPosts();
         });
     </script>
 </body>

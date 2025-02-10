@@ -55,14 +55,16 @@
 }
 
 .profile-image img {
-    max-width: 400px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    max-width: 100%;
+    height: auto;
+    border-radius: 60px;
+    box-shadow: 
+        0 10px 25px rgba(0,0,0,0.1),
+        0 5px 10px rgba(99, 102, 241, 0.1);
+    /* transition: all   0.3s ease; */
+    padding: 5px;
+    /* background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); */
 }
-
-/* .profile-image img:hover {
-    transform: rotate(0deg) scale(1.02);
-} */
 
 /* Typography with more personality */
 h1 {
@@ -190,7 +192,14 @@ h1 {
     }
 
     .profile-image {
-        text-align: center;
+        padding-top: 2rem;
+        width: 100%;
+    }
+
+    .profile-image img {
+        max-width: 80%;
+        margin: 0 auto;
+        display: block;
     }
 
     .social-links {

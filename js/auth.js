@@ -43,6 +43,12 @@ firebase.auth().onAuthStateChanged((user) => {
         newsControls.style.display = user ? 'block' : 'none';
     }
     
+    // Show/hide admin controls for blog
+    const adminControls = document.getElementById('admin-controls');
+    if (adminControls) {
+        adminControls.style.display = user ? 'block' : 'none';
+    }
+    
     // Add logout button if user is logged in
     const headerNav = document.querySelector('.nav-content');
     if (headerNav) {
@@ -60,11 +66,5 @@ firebase.auth().onAuthStateChanged((user) => {
         } else if (!user && existingLogoutBtn) {
             existingLogoutBtn.remove();
         }
-    }
-
-    // Show/hide blog controls
-    const blogControls = document.getElementById('blog-controls');
-    if (blogControls) {
-        blogControls.style.display = user ? 'block' : 'none';
     }
 }); 
