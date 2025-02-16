@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-02-10T14:18:03.904865",
+  "last_updated": "2025-02-16T01:15:53.129803",
   "publications": [
     {
       "title": "To the Max: Reinventing Reward in Reinforcement Learning",
@@ -50,7 +50,7 @@
       ],
       "year": 2021,
       "venue": "Science",
-      "citations": 102,
+      "citations": 103,
       "url": "https://www.science.org/doi/abs/10.1126/science.abc6588"
     }
   ]
