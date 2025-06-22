@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-05-25T01:28:05.181615",
+  "last_updated": "2025-06-22T01:38:49.295305",
   "publications": [
     {
       "title": "To the Max: Reinventing Reward in Reinforcement Learning",
@@ -10,8 +10,8 @@
       ],
       "year": 2024,
       "venue": "ICML 2024",
-      "citations": 1,
-      "url": ""
+      "citations": 2,
+      "url": "https://arxiv.org/abs/2402.01361"
     },
     {
       "title": "You Shall Pass: Dealing with the Zero-Gradient Problem in Predict and Optimize for Convex Optimization",
@@ -23,7 +23,7 @@
       "year": 2023,
       "venue": "arXiv preprint arXiv:2307.16304",
       "citations": 1,
-      "url": ""
+      "url": "https://arxiv.org/abs/2307.16304"
     },
     {
       "title": "Surrogate DC Microgrid Models for Optimization of Charging Electric Vehicles under Partial Observability",
@@ -35,8 +35,8 @@
       ],
       "year": 2022,
       "venue": "Energies",
-      "citations": 1,
-      "url": ""
+      "citations": 2,
+      "url": "https://www.mdpi.com/1996-1073/15/4/1389"
     },
     {
       "title": "Cultural transmission of vocal dialect in the naked mole-rat",
@@ -50,8 +50,8 @@
       ],
       "year": 2021,
       "venue": "Science",
-      "citations": 106,
-      "url": ""
+      "citations": 113,
+      "url": "https://www.science.org/doi/abs/10.1126/science.abc6588"
     }
   ]
 }
