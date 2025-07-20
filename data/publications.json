@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-06-22T01:38:49.295305",
+  "last_updated": "2025-07-20T01:44:35.104537",
   "publications": [
     {
       "title": "To the Max: Reinventing Reward in Reinforcement Learning",
@@ -10,7 +10,7 @@
       ],
       "year": 2024,
       "venue": "ICML 2024",
-      "citations": 2,
+      "citations": 6,
       "url": "https://arxiv.org/abs/2402.01361"
     },
     {
@@ -26,7 +26,7 @@
       "url": "https://arxiv.org/abs/2307.16304"
     },
     {
-      "title": "Surrogate DC Microgrid Models for Optimization of Charging Electric Vehicles under Partial Observability",
+      "title": "Surrogate dc microgrid models for optimization of charging electric vehicles under partial observability",
       "authors": [
         "Grigorii Veviurko",
         "Wendelin B\u00f6hmer",
@@ -35,7 +35,7 @@
       ],
       "year": 2022,
       "venue": "Energies",
-      "citations": 2,
+      "citations": 3,
       "url": "https://www.mdpi.com/1996-1073/15/4/1389"
     },
     {
@@ -50,7 +50,7 @@
       ],
       "year": 2021,
       "venue": "Science",
-      "citations": 113,
+      "citations": 116,
       "url": "https://www.science.org/doi/abs/10.1126/science.abc6588"
     }
   ]
