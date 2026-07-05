@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-14T03:50:27.146167",
+  "last_updated": "2026-07-05T02:51:09.676512",
   "publications": [
     {
       "title": "Sufficient Decision Proxies for Decision-Focused Learning",
@@ -11,7 +11,7 @@
       ],
       "year": 2025,
       "venue": "arXiv preprint arXiv:2505.03953",
-      "citations": 2,
+      "citations": 3,
       "url": "https://arxiv.org/abs/2505.03953"
     },
     {
@@ -33,7 +33,7 @@
       ],
       "year": 2024,
       "venue": "ICML 2024",
-      "citations": 18,
+      "citations": 19,
       "url": "https://arxiv.org/abs/2402.01361"
     },
     {
