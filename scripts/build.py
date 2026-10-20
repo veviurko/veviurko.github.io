@@ -5,6 +5,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'dist'
 S=json.loads((ROOT/'content/site.json').read_text())
 P=json.loads((ROOT/'content/publications.json').read_text())
+BASE_URL='https://veviurko.github.io/'
 e=lambda x: html.escape(str(x),quote=True)
 def link(label,url,cls=''):
  if not str(url).startswith(('https://','http://','mailto:','#','assets/')): raise ValueError('Unsafe URL: '+str(url))
@@ -22,8 +23,21 @@ def heading(kicker,title,desc=''):
  return f'<header class="page-heading"><p class="eyebrow">{e(kicker)}</p><h1>{e(title)}</h1>{"<p>"+e(desc)+"</p>" if desc else ""}</header>'
 def shell(page,title,body):
  version=hashlib.sha256((ROOT/'static/assets/style.css').read_bytes()+(ROOT/'static/assets/main.js').read_bytes()).hexdigest()[:10]
+ metadata={
+  'Home': ('', 'Grigorii Veviurko | Machine Learning Engineer, PhD', 'Grigorii Veviurko is a machine learning engineer at Apple in Munich and a TU Delft PhD graduate. Explore his publications, past research and experience.'),
+  'Past research': ('research.html', 'Past Research | Grigorii Veviurko', 'Past research by Grigorii Veviurko in reinforcement learning, constrained optimization, decision-focused learning and naked mole-rat vocalizations.'),
+  'About': ('about.html', 'About Grigorii Veviurko | Experience & Education', 'Grigorii Veviurko’s background: machine learning at Apple, a PhD from TU Delft, research at Nokia Bell Labs and computational neuroscience in Berlin.')
+ }
+ route,seo_title,description=metadata.get(page,('',title+' | '+S['name'],S['intro']))
+ canonical=BASE_URL+route
+ seo=(f'<link rel="canonical" href="{canonical}"><meta property="og:type" content="website"><meta property="og:url" content="{canonical}"><meta property="og:title" content="{e(seo_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:image" content="{BASE_URL}assets/portrait.jpg"><meta name="twitter:card" content="summary">') if page in metadata else '<meta name="robots" content="noindex">'
+ if S.get('google_site_verification'):
+  seo+=f'<meta name="google-site-verification" content="{e(S["google_site_verification"])}">'
+ if page=='Home':
+  person={'@context':'https://schema.org','@type':'Person','@id':BASE_URL+'#person','name':S['name'],'url':BASE_URL,'image':BASE_URL+'assets/portrait.jpg','jobTitle':S['role'],'sameAs':list(S['profiles'].values()),'alumniOf':[{'@type':'CollegeOrUniversity','name':x['institution']} for x in S['education']]}
+  seo+='<script type="application/ld+json">'+json.dumps(person,ensure_ascii=False).replace('<','\\u003c')+'</script>'
  nav=''.join(f'<a href="{url}"'+(' aria-current="page"' if page==name else '')+f'>{name}</a>' for name,url in [('Home','index.html'),('Past research','research.html'),('About','about.html')])
- return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title)} · {e(S['name'])}</title><meta name="description" content="{e(S['intro'])}"><meta name="theme-color" content="#f7f8f4"><link rel="icon" href="assets/favicon.svg?v={version}" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css?v={version}"><script src="assets/main.js?v={version}" defer></script></head><body>
+ return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(seo_title)}</title><meta name="description" content="{e(description)}">{seo}<meta name="theme-color" content="#f7f8f4"><link rel="icon" href="assets/favicon.svg?v={version}" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css?v={version}"><script src="assets/main.js?v={version}" defer></script></head><body>
  <a class="skip" href="#main">Skip to content</a><div class="site-wrap"><header class="site-header"><a class="wordmark" href="index.html" aria-label="Grigorii Veviurko, home"><img src="assets/marks/gv-4.svg" alt="" width="56" height="56"></a><nav aria-label="Main navigation">{nav}<a class="cv-link" href="assets/cv.pdf">CV <span aria-hidden="true">↗</span></a></nav></header>
  <main id="main">{body}</main><footer id="contact"><div><p class="eyebrow">Get in touch</p><a class="email" href="mailto:{e(S['email'])}">{e(S['email'])} <span aria-hidden="true">↗</span></a></div><div class="footer-right"><div class="profile-links">{profiles()}</div><p>{e(S['name'])} · {e(S['location'])}</p></div></footer></div></body></html>'''
 def timeline(items):
@@ -88,6 +102,8 @@ def build():
  for old,new in [('publications.html','index.html#publications'),('blog.html','index.html'),('post.html','index.html')]:
   (OUT/'pages'/old).write_text(f'<!doctype html><html lang="en"><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../{new}"><title>Page moved</title><p><a href="../{new}">Continue to the updated website</a></p></html>')
  (OUT/'404.html').write_text(shell('','Page not found',heading('404','Page not found')+'<p><a href="index.html">Return to the homepage ↗</a></p>'))
+ (OUT/'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: '+BASE_URL+'sitemap.xml\n')
+ (OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+BASE_URL+route+'</loc></url>' for route in ['', 'research.html', 'about.html'])+'</urlset>\n')
  (OUT/'.nojekyll').touch()
  print('Built 3 pages, legacy redirects, and 404 page in dist/')
 if __name__=='__main__':build()

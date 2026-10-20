@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://veviurko.github.io/sitemap.xml
