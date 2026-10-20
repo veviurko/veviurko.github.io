@@ -1,0 +1,20 @@
+{
+  "documents": [
+    {
+      "name": "projects/my-website-98418/databases/(default)/documents/news/ey5rv1bU1vfXZ1NcdnSF",
+      "fields": {
+        "timestamp": {
+          "timestampValue": "2025-02-11T10:39:09.706Z"
+        },
+        "content": {
+          "stringValue": "Started building this website, heavily using Cursor AI!"
+        },
+        "date": {
+          "stringValue": "2025-02-09"
+        }
+      },
+      "createTime": "2025-02-10T12:30:13.859727Z",
+      "updateTime": "2025-02-11T10:39:09.732144Z"
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "name": "Grigorii Veviurko",
+  "role": "Machine Learning Engineer",
+  "affiliation": "Apple",
+  "location": "Munich, Germany",
+  "intro": "I am a machine learning engineer at Apple in Munich, with a research background in reinforcement learning, mathematical optimization, and decision-focused learning. I received my PhD from TU Delft in 2025.",
+  "intro_more": "",
+  "email": "grivurko@gmail.com",
+  "profiles": {
+    "Google Scholar": "https://scholar.google.com/citations?user=2jVnBAIAAAAJ&hl=en",
+    "GitHub": "https://github.com/veviurko",
+    "LinkedIn": "https://www.linkedin.com/in/grivurko/"
+  },
+  "research": [
+    {
+      "id": "reinforcement-learning",
+      "title": "Reinforcement learning",
+      "subtitle": "Maximum-reward objectives",
+      "description": "",
+      "papers": [
+        "to-the-max"
+      ],
+      "paragraphs": [
+        "In my RL research, I was particularly interested in formulating “correct” optimization objectives. A task can be easy to describe in words, yet surprisingly difficult to translate into a reward function. Getting as close as possible to a goal, for example, is not quite the same as accumulating rewards along the way.",
+        "In my work on maximum-reward RL, I studied an alternative: optimize the best reward obtained during an episode. The policy then needs to know the maximum reward seen so far. By adding this to the state, I derived a Bellman operator and policy gradient results that let us use modern RL algorithms. I evaluated the approach on maze navigation and robotic manipulation tasks, and presented the work at ICML 2024.",
+        "Constraints were another motivation. Keeping the next action safe is not enough if it leaves the agent unable to avoid a collision later. This led me to ask whether we could constrain the highest cost along a trajectory, rather than its accumulated cost."
+      ],
+      "visuals": [
+        {
+          "kind": "replay",
+          "caption": "Avoiding moving obstacles while approaching a moving goal. Motion reconstructed from the demonstration in my talk; positions are approximate."
+        },
+        {
+          "src": "assets/research/max-reward.png",
+          "alt": "Learning curves comparing TD3 and maximum-reward TD3 on Fetch Slide and Fetch Push.",
+          "caption": "Maximum-reward RL on Fetch Slide and Fetch Push. Original results figure from my talk."
+        }
+      ]
+    },
+    {
+      "id": "optimization",
+      "title": "Mathematical optimization",
+      "subtitle": "Problem reformulations & uncertainty",
+      "description": "",
+      "papers": [
+        "dissertation",
+        "microgrids",
+        "you-shall-pass"
+      ],
+      "paragraphs": [
+        "My PhD revolved around optimization under uncertainty: we need to make a decision, but some of the information needed to optimize it is unknown. I was interested in combining the explicit constraints of mathematical optimization with the ability of machine learning to generalize from data.",
+        "I started with electric-vehicle charging in DC microgrids. The aim was to satisfy charging demand while accounting for generation costs and grid constraints, even when the exact locations of connected vehicles were unknown. I developed surrogate grid models for this partially observed problem, and worked with DC Opportunities to prototype and evaluate the method in our university’s field lab.",
+        "Across these projects, the recurring question was how to reformulate a problem so that we could learn and optimize what actually mattered. This became the theme of my dissertation, Optimization under Uncertainty through Problem Reformulations.",
+        "The geometry of constraints also matters for learning: an optimum in the interior can move in any direction, one on an edge can slide along it, and one at a corner can stay fixed as the objective changes. This is the zero-gradient problem I studied in decision-focused learning."
+      ],
+      "visuals": [
+        {
+          "kind": "geometry",
+          "caption": "The geometry behind zero gradients. As constraints become active, an optimum has fewer directions in which it can move. Original figures from my talk."
+        }
+      ]
+    },
+    {
+      "id": "decision-focused-learning",
+      "title": "Decision-focused learning",
+      "subtitle": "Prediction & downstream decisions",
+      "description": "",
+      "papers": [
+        "decision-proxies",
+        "you-shall-pass"
+      ],
+      "paragraphs": [
+        "Prediction quality is not always what we want. If a prediction is going into an optimization problem, what matters is the quality of the resulting decision. In decision-focused learning, I trained predictive models through the optimization problem itself.",
+        "Even when a convex problem can be differentiated exactly, its gradients can be useless for learning. I studied the geometry behind this: as more constraints become active, the solution has fewer directions in which it can move. Changes in the prediction may leave the decision unchanged, giving a zero gradient.",
+        "To address this, I worked on a quadratic proxy and local smoothing of the constraints to approximate the Jacobian. At Nokia Bell Labs, I also applied decision-focused learning to time-series prediction for home energy management, evaluating predictions by the decisions they produced."
+      ]
+    },
+    {
+      "id": "naked-mole-rats",
+      "title": "Naked mole-rat vocalizations",
+      "subtitle": "Deep learning & vocal dialects",
+      "description": "",
+      "paragraphs": [
+        "At the Max Delbrück Center in Berlin, I applied deep learning to study naked mole-rat vocalizations. I developed pipelines for automated detection and classification, together with Python tools for feature extraction and large-scale analysis of vocalization data.",
+        "My machine-learning analyses contributed to evidence that naked mole-rat colonies have distinct vocal dialects, leading to our publication in Science. I also presented this work in a Science Slam in Russian."
+      ],
+      "papers": [
+        "vocal-dialects"
+      ],
+      "links": {
+        "Science Slam (in Russian)": "https://www.youtube.com/watch?v=bvmrT6ttmh8"
+      }
+    }
+  ],
+  "experience": [
+    {
+      "institution": "Apple",
+      "role": "Machine Learning Engineer",
+      "dates": "June 2025 – Present",
+      "location": "Munich, Germany",
+      "description": "",
+      "logo": "assets/logos/apple.svg",
+      "paragraphs": [
+        "I develop learned surrogate models of complex physical systems, alongside interpretable approaches such as symbolic regression and Kolmogorov–Arnold Networks. My work also covers automated workflows for data preparation, training, hyperparameter optimization, and model evaluation."
+      ]
+    },
+    {
+      "institution": "Nokia Bell Labs",
+      "role": "Research Intern",
+      "dates": "Mar. 2024 – June 2024",
+      "location": "Stuttgart, Germany",
+      "description": "",
+      "logo": "assets/logos/nokia.png",
+      "paragraphs": [
+        "I worked on two applications of machine learning: web automation and home energy management. I developed a vision-language model for identifying webpage elements and integrated it into a prototype autonomous navigation agent.",
+        "For energy management, I implemented and evaluated predict-and-optimize methods in a simulated home environment, studying their performance and failure modes."
+      ]
+    },
+    {
+      "institution": "Delft University of Technology",
+      "role": "PhD Researcher in Machine Learning",
+      "dates": "July 2020 – Nov. 2024",
+      "location": "Delft, Netherlands",
+      "description": "",
+      "logo": "assets/logos/tudelft.svg",
+      "paragraphs": [
+        "My doctoral work explored reinforcement learning and optimization under uncertainty. I developed the Max-Reward framework for goal-reaching tasks, published at ICML 2024, and methods addressing the zero-gradient problem in decision-focused learning with convex optimization.",
+        "I also worked on electric-vehicle charging under partial observability, validating the optimization approach on a physical DC microgrid."
+      ],
+      "links": {
+        "ICML paper": "https://proceedings.mlr.press/v235/veviurko24a.html",
+        "Code": "https://github.com/veviurko/To-the-Max"
+      }
+    },
+    {
+      "institution": "Max Delbrück Center for Molecular Medicine",
+      "role": "Research Assistant",
+      "dates": "Nov. 2017 – Jan. 2021",
+      "location": "Berlin, Germany",
+      "description": "",
+      "logo": "assets/logos/mdc.png",
+      "paragraphs": [
+        "I built deep-learning pipelines to detect and classify naked mole-rat vocalizations, together with Python tools for feature extraction and large-scale sound analysis. The automated pipeline reduced manual annotation effort by approximately 80%.",
+        "These analyses contributed to evidence that naked mole-rat colonies have distinct vocal dialects, reported in Science."
+      ],
+      "links": {
+        "Science paper": "https://www.science.org/doi/abs/10.1126/science.abc6588",
+        "Science Slam (in Russian)": "https://www.youtube.com/watch?v=bvmrT6ttmh8"
+      }
+    }
+  ],
+  "education": [
+    {
+      "institution": "Delft University of Technology",
+      "role": "PhD in Computer Science",
+      "dates": "2020 – 2025",
+      "location": "Delft, Netherlands",
+      "description": "Defended September 12, 2025.",
+      "thesis": "Optimization under Uncertainty through Problem Reformulations",
+      "url": "https://repository.tudelft.nl/file/File_d37762ef-6dcd-4ec6-b769-89be735b8438?preview=1",
+      "logo": "assets/logos/tudelft.svg"
+    },
+    {
+      "institution": "Technische Universität Berlin (TU Berlin)",
+      "role": "MSc in Computational Neuroscience and Machine Learning",
+      "dates": "2017 – 2019",
+      "location": "Berlin, Germany",
+      "thesis": "Cooperative Multi-Agent Reinforcement Learning in Hanabi",
+      "logo": "assets/logos/tuberlin.png"
+    },
+    {
+      "institution": "National Research University Higher School of Economics",
+      "role": "BSc in Mathematics",
+      "dates": "2013 – 2017",
+      "location": "Moscow, Russia",
+      "thesis": "Zagier Series for Modular Height",
+      "logo": "assets/logos/hse.png"
+    }
+  ],
+  "about_more": "",
+  "personal_interests": "",
+  "research_philosophy": "",
+  "projects": [],
+  "notes": [],
+  "degree_line": "PhD in Computer Science · TU Delft, 2025"
+}

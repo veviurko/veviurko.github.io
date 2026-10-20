@@ -1,0 +1,114 @@
+{
+  "overrides": {
+    "Sufficient Decision Proxies for Decision-Focused Learning": {
+      "authors": [
+        "Noah Schutte",
+        "Grigorii Veviurko",
+        "Krzysztof Postek",
+        "Neil Yorke-Smith"
+      ],
+      "year": 2026,
+      "venue": "IJCAI 2026",
+      "id": "decision-proxies",
+      "links": {
+        "Publisher": "https://www.ijcai.org/proceedings/2026/260",
+        "arXiv": "https://arxiv.org/abs/2505.03953"
+      },
+      "selected": true,
+      "type": "Conference",
+      "description": "",
+      "image": ""
+    },
+    "Optimization under Uncertainty through Problem Reformulations": {
+      "authors": [
+        "Grigorii Veviurko"
+      ],
+      "year": 2025,
+      "venue": "Delft University of Technology",
+      "id": "dissertation",
+      "links": {
+        "Paper": "https://repository.tudelft.nl/file/File_d37762ef-6dcd-4ec6-b769-89be735b8438?preview=1"
+      },
+      "selected": false,
+      "type": "Dissertation",
+      "description": "",
+      "image": ""
+    },
+    "To the Max: Reinventing Reward in Reinforcement Learning": {
+      "authors": [
+        "Grigorii Veviurko",
+        "Wendelin Böhmer",
+        "Mathijs de Weerdt"
+      ],
+      "year": 2024,
+      "venue": "ICML 2024",
+      "id": "to-the-max",
+      "links": {
+        "Paper": "https://arxiv.org/abs/2402.01361",
+        "Publisher": "https://proceedings.mlr.press/v235/veviurko24a.html",
+        "Code": "https://github.com/veviurko/To-the-Max"
+      },
+      "selected": true,
+      "type": "Conference",
+      "description": "",
+      "image": ""
+    },
+    "You Shall Pass: Dealing with the Zero-Gradient Problem in Predict and Optimize for Convex Optimization": {
+      "authors": [
+        "Grigorii Veviurko",
+        "Wendelin Böhmer",
+        "Mathijs de Weerdt"
+      ],
+      "year": 2023,
+      "venue": "arXiv preprint arXiv:2307.16304",
+      "id": "you-shall-pass",
+      "links": {
+        "Paper": "https://arxiv.org/abs/2307.16304"
+      },
+      "selected": true,
+      "type": "Preprint",
+      "description": "",
+      "image": ""
+    },
+    "Surrogate DC Microgrid Models for Optimization of Charging Electric Vehicles under Partial Observability": {
+      "authors": [
+        "Grigorii Veviurko",
+        "Wendelin Böhmer",
+        "Laurens Mackay",
+        "Mathijs de Weerdt"
+      ],
+      "year": 2022,
+      "venue": "Energies",
+      "id": "microgrids",
+      "links": {
+        "Paper": "https://www.mdpi.com/1996-1073/15/4/1389"
+      },
+      "selected": false,
+      "type": "Journal",
+      "description": "",
+      "image": ""
+    },
+    "Cultural transmission of vocal dialect in the naked mole-rat": {
+      "authors": [
+        "Alison J Barker",
+        "Grigorii Veviurko",
+        "Nigel C Bennett",
+        "Daniel W Hart",
+        "Lina Mograby",
+        "Gary R Lewin"
+      ],
+      "year": 2021,
+      "venue": "Science",
+      "id": "vocal-dialects",
+      "links": {
+        "Paper": "https://www.science.org/doi/abs/10.1126/science.abc6588",
+        "Science Slam (in Russian)": "https://www.youtube.com/watch?v=bvmrT6ttmh8"
+      },
+      "selected": true,
+      "type": "Journal",
+      "description": "",
+      "image": ""
+    }
+  },
+  "exclude": []
+}

@@ -1,0 +1,75 @@
+{
+  "documents": [
+    {
+      "name": "projects/my-website-98418/databases/(default)/documents/blog-posts/WETb3izODclyW7NmB4fC",
+      "fields": {
+        "lastModified": {
+          "timestampValue": "2025-02-10T14:20:07.251Z"
+        },
+        "title": {
+          "stringValue": "test"
+        },
+        "preview": {
+          "stringValue": "Optimization in Machine Learning"
+        },
+        "timestamp": {
+          "timestampValue": "2025-02-10T14:20:07.251Z"
+        },
+        "tags": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "tag1"
+              },
+              {
+                "stringValue": "tag2"
+              }
+            ]
+          }
+        },
+        "author": {
+          "stringValue": "grivurko@gmail.com"
+        },
+        "content": {
+          "stringValue": "### Optimization in Machine Learning\n\nOptimization plays a crucial role in machine learning, as many learning algorithms rely on minimizing or maximizing an objective function. One common optimization problem is minimizing the loss function $L(\\theta)$, which depends on model parameters $\\theta$. Mathematically, this can be expressed as:\n\n$$\n\\theta^* = \\arg\\min_{\\theta} L(\\theta)\n$$\n\nwhere $\\theta^*$ represents the optimal set of parameters.\n\n#### Gradient Descent\n\nA widely used optimization algorithm is **gradient descent**, which iteratively updates parameters in the direction of the negative gradient:\n\n$$\n\\theta_{t+1} = \\theta_t - \\eta \\nabla_{\\theta} L(\\theta_t)\n$$\n\nwhere $\\eta$ is the learning rate, controlling the step size.\n\n#### Second-Order Optimization\n\nWhile gradient descent relies on first-order derivatives, second-order methods utilize the Hessian matrix $H$, which contains second-order partial derivatives:\n\n$$\nH_{ij} = \\frac{\\partial^2 L}{\\partial \\theta_i \\partial \\theta_j}\n$$\n\nNewton’s method updates parameters using:\n\n$$\n\\theta_{t+1} = \\theta_t - H^{-1} \\nabla_{\\theta} L(\\theta_t)\n$$\n\nwhere $H^{-1}$ is the inverse of the Hessian. This approach can converge faster but is computationally expensive for high-dimensional models.\n\nBy leveraging these optimization techniques, machine learning models can effectively learn patterns from data, improving performance across various tasks.\n"
+        }
+      },
+      "createTime": "2025-02-10T14:16:26.733577Z",
+      "updateTime": "2025-02-10T14:20:07.274757Z"
+    },
+    {
+      "name": "projects/my-website-98418/databases/(default)/documents/blog-posts/oNGqbn1kvmjKyyuGedC3",
+      "fields": {
+        "content": {
+          "stringValue": "test test"
+        },
+        "tags": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "a1"
+              }
+            ]
+          }
+        },
+        "timestamp": {
+          "timestampValue": "2025-02-10T17:30:28.281Z"
+        },
+        "preview": {
+          "stringValue": ""
+        },
+        "author": {
+          "stringValue": "grivurko@gmail.com"
+        },
+        "title": {
+          "stringValue": "test"
+        },
+        "lastModified": {
+          "timestampValue": "2025-02-10T17:30:28.281Z"
+        }
+      },
+      "createTime": "2025-02-10T17:30:28.311128Z",
+      "updateTime": "2025-02-10T17:30:28.311128Z"
+    }
+  ]
+}
