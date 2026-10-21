@@ -28,7 +28,7 @@
       "visuals": [
         {
           "kind": "replay",
-          "caption": "Avoiding moving obstacles while approaching a moving goal. Motion reconstructed from the demonstration in my talk; positions are approximate."
+          "caption": "Moving obstacles and a moving goal, replayed from my talk. Positions are reconstructed and smoothed for readability; this is an approximate visualization, not simulation data."
         },
         {
           "src": "assets/research/max-reward.png",
@@ -39,50 +39,43 @@
     },
     {
       "id": "optimization",
-      "title": "Mathematical optimization",
-      "subtitle": "Problem reformulations & uncertainty",
+      "title": "Optimization & decision-focused learning",
+      "subtitle": "Learning to make better decisions",
       "description": "",
       "papers": [
-        "dissertation",
+        "decision-proxies",
+        "you-shall-pass",
         "microgrids",
-        "you-shall-pass"
+        "dissertation"
       ],
       "paragraphs": [
         "My PhD revolved around optimization under uncertainty: we need to make a decision, but some of the information needed to optimize it is unknown. I was interested in combining the explicit constraints of mathematical optimization with the ability of machine learning to generalize from data.",
-        "I started with electric-vehicle charging in DC microgrids. The aim was to satisfy charging demand while accounting for generation costs and grid constraints, even when the exact locations of connected vehicles were unknown. I developed surrogate grid models for this partially observed problem, and worked with DC Opportunities to prototype and evaluate the method in our university’s field lab.",
-        "Across these projects, the recurring question was how to reformulate a problem so that we could learn and optimize what actually mattered. This became the theme of my dissertation, Optimization under Uncertainty through Problem Reformulations.",
-        "The geometry of constraints also matters for learning: an optimum in the interior can move in any direction, one on an edge can slide along it, and one at a corner can stay fixed as the objective changes. This is the zero-gradient problem I studied in decision-focused learning."
+        "Prediction quality is not always what we want. If a prediction is going into an optimization problem, what matters is the quality of the resulting decision. In decision-focused learning, I trained predictive models through the optimization problem itself.",
+        "Even when a convex problem can be differentiated exactly, its gradients can be useless for learning. I studied the geometry behind this: as more constraints become active, the solution has fewer directions in which it can move. Changes in the prediction may leave the decision unchanged, giving a zero gradient.",
+        "To address this, I worked on a quadratic proxy and local smoothing of the constraints to approximate the Jacobian. The aim was to give the predictive model a useful learning signal even when the original optimization problem returned a zero gradient.",
+        "One application was electric-vehicle charging in DC microgrids. The aim was to satisfy charging demand while accounting for generation costs and grid constraints, even when the exact locations of connected vehicles were unknown. I developed surrogate grid models for this partially observed problem, and worked with DC Opportunities to prototype and evaluate the method in our university’s field lab.",
+        "At Nokia Bell Labs, I applied decision-focused learning to time-series prediction for home energy management, evaluating predictions by the decisions they produced. Across these projects, the recurring question was how to reformulate a problem so that we could learn and optimize what actually mattered."
       ],
       "visuals": [
         {
           "kind": "geometry",
           "caption": "The geometry behind zero gradients. As constraints become active, an optimum has fewer directions in which it can move. Original figures from my talk."
         }
-      ]
-    },
-    {
-      "id": "decision-focused-learning",
-      "title": "Decision-focused learning",
-      "subtitle": "Prediction & downstream decisions",
-      "description": "",
-      "papers": [
-        "decision-proxies",
-        "you-shall-pass"
       ],
-      "paragraphs": [
-        "Prediction quality is not always what we want. If a prediction is going into an optimization problem, what matters is the quality of the resulting decision. In decision-focused learning, I trained predictive models through the optimization problem itself.",
-        "Even when a convex problem can be differentiated exactly, its gradients can be useless for learning. I studied the geometry behind this: as more constraints become active, the solution has fewer directions in which it can move. Changes in the prediction may leave the decision unchanged, giving a zero gradient.",
-        "To address this, I worked on a quadratic proxy and local smoothing of the constraints to approximate the Jacobian. At Nokia Bell Labs, I also applied decision-focused learning to time-series prediction for home energy management, evaluating predictions by the decisions they produced."
-      ]
+      "aliases": [
+        "decision-focused-learning"
+      ],
+      "visuals_after": 4
     },
     {
       "id": "naked-mole-rats",
-      "title": "Naked mole-rat vocalizations",
+      "title": "Naked mole-rats & vocal dialects",
       "subtitle": "Deep learning & vocal dialects",
       "description": "",
       "paragraphs": [
-        "At the Max Delbrück Center in Berlin, I applied deep learning to study naked mole-rat vocalizations. I developed pipelines for automated detection and classification, together with Python tools for feature extraction and large-scale analysis of vocalization data.",
-        "My machine-learning analyses contributed to evidence that naked mole-rat colonies have distinct vocal dialects, leading to our publication in Science. I also presented this work in a Science Slam in Russian."
+        "Before my PhD, I worked at the Max Delbrück Center in Berlin, applying deep learning to study naked mole-rat vocalizations.",
+        "A large part of my work was making these recordings usable for analysis: detecting calls, extracting acoustic features, and classifying vocalizations at scale. The automated pipeline reduced manual annotation effort by approximately 80%.",
+        "My machine-learning analyses contributed to evidence that naked mole-rat colonies have distinct vocal dialects, leading to our publication in Science."
       ],
       "papers": [
         "vocal-dialects"
