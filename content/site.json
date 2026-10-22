@@ -40,7 +40,7 @@
     {
       "id": "optimization",
       "title": "Optimization & decision-focused learning",
-      "subtitle": "Learning to make better decisions",
+      "subtitle": "Formulating the right problem",
       "description": "",
       "papers": [
         "decision-proxies",
@@ -49,12 +49,11 @@
         "dissertation"
       ],
       "paragraphs": [
-        "My PhD revolved around optimization under uncertainty: we need to make a decision, but some of the information needed to optimize it is unknown. I was interested in combining the explicit constraints of mathematical optimization with the ability of machine learning to generalize from data.",
-        "Prediction quality is not always what we want. If a prediction is going into an optimization problem, what matters is the quality of the resulting decision. In decision-focused learning, I trained predictive models through the optimization problem itself.",
-        "Even when a convex problem can be differentiated exactly, its gradients can be useless for learning. I studied the geometry behind this: as more constraints become active, the solution has fewer directions in which it can move. Changes in the prediction may leave the decision unchanged, giving a zero gradient.",
-        "To address this, I worked on a quadratic proxy and local smoothing of the constraints to approximate the Jacobian. The aim was to give the predictive model a useful learning signal even when the original optimization problem returned a zero gradient.",
-        "One application was electric-vehicle charging in DC microgrids. The aim was to satisfy charging demand while accounting for generation costs and grid constraints, even when the exact locations of connected vehicles were unknown. I developed surrogate grid models for this partially observed problem, and worked with DC Opportunities to prototype and evaluate the method in our university’s field lab.",
-        "At Nokia Bell Labs, I applied decision-focused learning to time-series prediction for home energy management, evaluating predictions by the decisions they produced. Across these projects, the recurring question was how to reformulate a problem so that we could learn and optimize what actually mattered."
+        "My PhD was about formulating the right problem: translating a real-world task into an optimization problem that is both tractable and aligned with what we actually want to achieve. Under uncertainty, the formulation depends on what we know about the system and what data we have. This was the common thread connecting my work on mathematical optimization, decision-focused learning, and reinforcement learning.",
+        "In electric-vehicle charging, we knew the grid model but only had partial information about where vehicles were connected. Explicitly considering every possible assignment would make the problem too large. I developed surrogate grid formulations that let us make charging decisions without modeling each possible location, balancing computational efficiency with solution quality.",
+        "Decision-focused learning takes the next step: some parameters are unknown, but we have data to predict them. The question is how to formulate the training problem. A navigation app, for example, should provide a good route; accurate predictions of travel times are only a means to that end. I was interested in training models for the quality of the decisions they produce, while using our knowledge of the optimization problem’s structure.",
+        "Choosing the right objective is only part of the problem: we also need to be able to learn from it. In convex optimization, changes in a prediction can leave the optimal decision unchanged, giving a zero gradient. I studied the geometry behind this and developed reformulations using quadratic approximation and local constraint smoothing to provide useful gradients for learning.",
+        "At Nokia Bell Labs, I also applied decision-focused learning to time-series prediction for home energy management. Across these projects, the aim was to find formulations that preserve what matters about the task while making it possible to solve and learn from it."
       ],
       "visuals": [
         {
